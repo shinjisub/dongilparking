@@ -25,9 +25,6 @@ public class Jumin extends BaseDateEntity {
 
     private String useFlag;
 
-    @OneToMany(mappedBy = "jumin")
-    private List<Car> Car = new ArrayList<>();
-
     @Builder
     public Jumin(String name, String representationNumber, String useFlag) {
         this.name = name;

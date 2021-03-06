@@ -14,11 +14,9 @@ import javax.persistence.*;
 @Entity
 public class Car extends BaseDateEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long carId;
 
-    @Column(name = "car_number")
     private String carNumber;
 
     private String carKey;
@@ -29,17 +27,18 @@ public class Car extends BaseDateEntity {
 
     private String lastUpdateId;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Jumin.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "jumin_id")
     private Jumin jumin;
 
 
     @Builder
-    public Car(String carNumber, String carKey, String juminId, String useFlag, String creationId, String lastUpdateId) {
+    public Car(String carNumber, String carKey, Jumin jumin,String useFlag, String creationId, String lastUpdateId) {
         this.carNumber = carNumber;
         this.carKey = carKey;
         this.useFlag = useFlag;
         this.creationId = creationId;
         this.lastUpdateId = lastUpdateId;
+        this.jumin = jumin;
     }
 }
